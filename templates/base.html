@@ -11,7 +11,7 @@
         <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
         <link href="{% static 'css/styles.css' %}" rel="stylesheet" type="text/css">
     </head>
-    <body>
+    <body class="dark">
         <nav class="navbar navbar-expand-lg bg-dark sticky-top navbar-dark p-2 shadow-sm">
         <div class="container">
             <a class="navbar-brand" href="#">
@@ -65,11 +65,10 @@
         </div>
         {% endfor %}
         {% endif %}
-        <!-- toast end -->      
-
+        <!-- toast end -->
         {% block content %}
         {% endblock %}
-        <footer class="footer-dark">
+        <footer class="footer-dark mt-5">
             <div class="container">
                 <div class="row mt-3">
                     <div class="col-sm-12 item social">
