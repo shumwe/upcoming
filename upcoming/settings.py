@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     'taggit',
     # my create apps    
     'core',
+    'lessons',
 ]
 
 MIDDLEWARE = [
