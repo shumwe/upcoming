@@ -14,7 +14,7 @@
     <body class="dark">
         <nav class="navbar navbar-expand-lg bg-dark sticky-top navbar-dark p-2 shadow-sm">
         <div class="container">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="{% url 'home' %}">
                 <em class="bi-solid bi-code me-2"></em> <strong title="Upcoming Learning Site">UPCOMING</strong></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,7 +24,7 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav ms-auto fw-bold text-family">
                     <li class="nav-item">
-                        <a class="nav-link mx-2 text-uppercase" href="#"> 
+                        <a class="nav-link mx-2 text-uppercase" href="{% url 'lessons_list' %}"> 
                             <em class="bi-file-earmark-easel-fill"></em> Lessons</a>
                     </li>
                     <li class="nav-item">
@@ -37,14 +37,44 @@
                         </a>
                     </li>
                 </ul>
-                <ul class="navbar-nav ms-auto ">
-                    <li class="nav-item">
-                        <a class="nav-link mx-2 text-uppercase" href="#">Media</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link mx-2 text-uppercase" href="#">
-                        <em class="bi-solid bi-person me-1"></em> Account</a>
-                    </li>
+                <ul class="navbar-nav ms-auto text-family">                      
+                    <li class="nav-item dropdown">
+                        <a class="nav-link mx-2 text-uppercase" href="#" data-bs-toggle="dropdown" data-bs-target="services-dropdown">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                            </svg>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end bg-dark border-0 mt-2 enlarge">
+                            {% if not user.is_authenticated %}
+                            <div class="nav-item text-center fw-bold">
+                                <span class="text-light">Login in with </span> <hr/>
+                                <a class="text-decoration-none text-success" href="#0">
+                                    Github <em class="bi bi-github"></em>
+                                </a>
+                                <hr/>
+                                <a class="text-decoration-none text-success" href="#1">
+                                    Google <em class="bi bi-google"></em>
+                                </a>
+                                <hr/>
+                                <a class="text-decoration-none text-success" href="#1">
+                                    Password Login <em class="bi bi-key"></em>
+                                </a>                                
+                            </div>
+                            {% else %}
+                            <div class="row g-4">
+                                <div class="col-sm-6">
+                                    <em class="nav-link">@{{user.username}}</em>
+                                </div>
+                                <div class="col-sm-6">
+                                    <a href="{% url 'profile' %}" class="nav-link">Go to profile &nbsp; <span class="bi-link"></span>
+                                    </a>
+                                    <hr>
+                                    <a href="#1" class="nav-link btn-outline-danger">Logout</a>
+                                </div>
+                            </div>
+                            {% endif %}
+                        </div>
+                      </li>
                 </ul>
             </div>
         </div>

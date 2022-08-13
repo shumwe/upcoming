@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <h3 class="fw-bold text-family text-uppercase">View Lessons</h3>
+        <hr/>
+    </div>
+    {% if lessons %}
+    <div class="row mt-2 row-cols-1 row-cols-md-2 g-4">
+        {% for lesson in lessons %}
+        <div class="col shadow-lg">
+            <div class="card bg-dark">
+                <a href="#">
+                    <img src="{{lesson.featured_image.url}}" class="card-img-top" height="300" width="300" alt="{{lesson.title}}-image">
+                </a>
+                <div class="card-body">
+                  <h3 class="card-title fw-bold text-family">
+                      <a href="#" class="text-decoration-none text-light">{{lesson.title}}</a>
+                  </h3>
+                  <p class="card-text"> {{lesson.content|truncatewords:30}} </p>
+                  {% for tag in lesson.tags.all %}
+                  <span class="badge fw-bold bg-success"># {{tag.name}}</span>
+                  {% endfor %}
+                </div>
+                <div class="card-footer">
+                  <small class="text-muted">{{lesson.posted|naturaltime}}</small>
+                </div>
+            </div>            
+        </div> 
+        {% endfor %}        
+    </div>
+    {% else %}
+    <div class="row">
+        <h3 class="text-family fw-bold text-info text-center">
+            We have not uploaded any content yet, please check back later !!
+        </h3>
+    </div>
+    <div class="row mt-5 row-cols-1 row-cols-md-3 g-4 d-flex justify-content-center">
+        
+        <div class="col shadow-lg">
+            <div class="card bg-dark">
+                <div class="card-body text-center my-5">
+                    <a href="#" class="btn btn-success">Take me home</a>
+                </div>
+            </div>
+        </div>            
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
