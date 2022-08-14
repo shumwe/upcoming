@@ -24,11 +24,10 @@ class Lesson(models.Model):
         if not self.slug:
             self.slug = slugify(self.name)
         return super().save(*args, **kwargs)
-    """
+    
     def get_absolute_url(self):
-        return reverse('lesson_view', kwargs={
-            'author': self.author,
+        return reverse('lesson_detail', kwargs={
+            'author': self.author.username,
             'year': self.posted.strftime("%Y"),
-            'month': self.posted.strftime("%B"),
+            'month': self.posted.strftime("%m"),
             'slug': self.slug})
-        """
