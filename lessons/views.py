@@ -5,7 +5,7 @@ from django.views.generic import ListView, DetailView
 
 class LessonListView(ListView):
     queryset = Lesson.objects.filter(publish=True).order_by('-posted')
-    teplate_name = 'lessons/lessons_index.html'
+    template_name = 'lessons/lesson_list.html'
     context_object_name = 'lessons'
     paginate_by = 10
     

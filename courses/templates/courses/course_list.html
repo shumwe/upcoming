@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <h1 class="text-family fw-bold text-center">Courses</h1>
+        <hr/>
+    </div>
+    {% if courses %}
+    <div class="row mt-2 row-cols-1 row-cols-md-2 g-4">
+        {% for course in courses %}
+        <div class="col shadow">
+            <div class="card bg-dark">
+                <a href="{{course.get_absolute_url}}">
+                    <img src="{{course.featured_image.url}}" class="card-img-top" height="300" width="300" alt="{{course.title}}-image">
+                </a>
+                <div class="card-body">
+                  <h3 class="card-title fw-bold text-family">
+                      <a href="{{course.get_absolute_url}}" title="{{course.title}}" class="text-decoration-none text-light">{{course.title|truncatechars:30}}</a>
+                  </h3>
+                  <p class="card-text"> {{course.content|truncatewords:30}} </p>
+                  {% for tag in course.tags.all %}
+                  <span class="badge fw-bold bg-success"># {{tag.name}}</span>
+                  {% endfor %}
+                </div>
+                <div class="card-footer">
+                  <small class="text-muted">{{course.posted|naturaltime}}</small>
+                </div>
+            </div>            
+        </div> 
+        {% endfor %}
+    </div>
+    {% else %}
+    <!-- no content box -->
+    {% include 'includes/no_content_added.html' %}
+
+    {% endif %}
+</div>
+{% endblock%}

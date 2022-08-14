@@ -2,6 +2,7 @@ from django.db import models
 from django.template.defaultfilters import slugify
 from taggit.managers import TaggableManager
 from django.contrib.auth import get_user_model
+from django.urls import reverse
 
 User = get_user_model()
 
@@ -17,11 +18,17 @@ class Course(models.Model):
     
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(self.name)
+            self.slug = slugify(self.heading)
         return super().save(*args, **kwargs)
     
+    def get_absolute_url(self):
+        return reverse('course_detail', kwargs={'username':self.creator.username,
+                                                'year':self.created.strftime("%Y"),
+                                                'month':self.created.strftime("%m"),
+                                                'slug':self.slug})
+    
     def __str__(self):
-        return f"{self.name}"
+        return f"{self.heading}"
     
 class Chapter(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
