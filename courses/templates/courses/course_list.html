@@ -10,16 +10,16 @@
     {% if courses %}
     <div class="row mt-2 row-cols-1 row-cols-md-2 g-4">
         {% for course in courses %}
-        <div class="col shadow">
-            <div class="card bg-dark">
+        <div class="col d-flex justify-content-center">
+            <div class="w-75 card bg-dark shadow-lg">
                 <a href="{{course.get_absolute_url}}">
-                    <img src="{{course.featured_image.url}}" class="card-img-top" height="300" width="300" alt="{{course.title}}-image">
+                    <img src="{{course.featured_image.url}}" class="card-img-top" height="250" width="300" alt="{{course.title}}-image">
                 </a>
                 <div class="card-body">
                   <h3 class="card-title fw-bold text-family">
-                      <a href="{{course.get_absolute_url}}" title="{{course.title}}" class="text-decoration-none text-light">{{course.title|truncatechars:30}}</a>
+                      <a href="{{course.get_absolute_url}}" title="{{course.heading}}" class="text-decoration-none text-light">{{course.heading|truncatechars:50}}</a>
                   </h3>
-                  <p class="card-text"> {{course.content|truncatewords:30}} </p>
+                  <h6 class="text-muted">{{course.sub_heading}}</h6>
                   {% for tag in course.tags.all %}
                   <span class="badge fw-bold bg-success"># {{tag.name}}</span>
                   {% endfor %}
