@@ -19,3 +19,14 @@ class CourseDetail(DetailView):
         chapters = Chapter.objects.filter(course=course)
         context['chapters'] = chapters
         return context
+    
+class ChapterDetail(DetailView):
+    model = Chapter
+    contexxt_object_name = 'chapter'
+    template_name = 'courses/chapter_detail.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        chapters = Chapter.objects.filter(course=self.get_object())
+        context['chapters'] = chapters
+        return context

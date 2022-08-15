@@ -15,7 +15,7 @@
             <div class="col d-flex justify-content-center w-75">
                 <div class="list-group w-75">
                     {% for chap in chapters %}
-                    <a class="bg-dark text-light list-group-item d-flex justify-content-between align-items-start">
+                    <a href="{{chap.get_absolute_url}}" class="bg-dark text-light raise list-group-item d-flex justify-content-between align-items-start">
                         {{chap.chapter_number_in_course}}
                         <div class="ms-2 me-auto">
                           <div class="fw-bold">{{chap.title}}</div>

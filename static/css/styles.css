@@ -23,6 +23,16 @@ hr {
         width: 350px ;
     }
 }
+.raise {
+    position: relative;
+    top: 0;
+    transition: top ease 0.5s;
+}
+.raise:hover {
+    top: -10px;
+    box-shadow: 0 0 3px black;
+}
+
 footer{
     margin-top: auto;
 }

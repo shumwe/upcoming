@@ -36,6 +36,7 @@ class Chapter(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='chapters')
     title = models.CharField(max_length=155)
     slug = models.SlugField(unique=True, null=True, blank=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.TextField()
     tags = TaggableManager()
     chapter_number_in_course = models.IntegerField(default=1, help_text='use integers')
@@ -54,3 +55,11 @@ class Chapter(models.Model):
     def get_readtime(self):
         res = readtime.of_html(self.content)
         return res
+    
+    def get_absolute_url(self):
+        return reverse('chapter_detail', kwargs={'course': self.course.slug,
+                                                 'username': self.author.username,
+                                                 'year': self.created.strftime("%Y"),
+                                                 'month':self.created.strftime("%m"),
+                                                 'slug':self.slug,
+                                                 })
