@@ -32,7 +32,10 @@ hr {
     top: -10px;
     box-shadow: 0 0 3px black;
 }
-
+.chapter-list-scroll {
+    overflow-y: scroll;
+    height: 100% !important;
+}
 footer{
     margin-top: auto;
 }

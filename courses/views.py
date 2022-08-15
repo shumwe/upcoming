@@ -27,6 +27,7 @@ class ChapterDetail(DetailView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        chapters = Chapter.objects.filter(course=self.get_object())
+        chapter = self.get_object()
+        chapters = Chapter.objects.filter(course=chapter.course)
         context['chapters'] = chapters
         return context
